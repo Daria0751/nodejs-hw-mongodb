@@ -12,10 +12,13 @@ export const setupServer = () => {
   app.use(pino());
   app.use(express.json());
 
+  app.get('/', (req, res) => {
+    res.status(200).send('OK');
+  });
+
   app.use('/contacts', contactsRouter);
 
   app.use(notFoundHandler);
-
   app.use(errorHandler);
 
   return app;
