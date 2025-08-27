@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import createHttpError from 'http-errors';
 import { User } from '../models/userModel.js';
+import { Session } from '../models/sessionModel.js';
 
 const { JWT_SECRET } = process.env;
 
@@ -23,8 +24,23 @@ export const authenticate = async (req, _res, next) => {
       throw createHttpError(401, 'Invalid access token');
     }
 
+    const session = await Session.findOne({
+      userId: payload.sub,
+      accessToken: token,
+    });
+
+    if (!session) {
+      throw createHttpError(401, 'Invalid access token');
+    }
+
+    if (session.accessTokenValidUntil < new Date()) {
+      throw createHttpError(401, 'Access token expired');
+    }
+
     const user = await User.findById(payload.sub).select('-password');
-    if (!user) throw createHttpError(401, 'User not found');
+    if (!user) {
+      throw createHttpError(401, 'User not found');
+    }
 
     req.user = {
       _id: String(user._id),
