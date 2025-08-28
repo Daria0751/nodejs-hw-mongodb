@@ -31,6 +31,9 @@ const contactSchema = new Schema(
       required: true,
       default: 'personal',
     },
+    photo: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -39,6 +42,5 @@ const contactSchema = new Schema(
 );
 
 export const Contact = model('Contact', contactSchema);
-
 
 
