@@ -4,6 +4,12 @@ const { Schema, model } = mongoose;
 
 const contactSchema = new Schema(
   {
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+      index: true,
+    },
     name: {
       type: String,
       required: true,
@@ -25,11 +31,16 @@ const contactSchema = new Schema(
       required: true,
       default: 'personal',
     },
+    photo: {
+      type: String,
+    },
   },
   {
     timestamps: true,
+    versionKey: false,
   }
 );
 
 export const Contact = model('Contact', contactSchema);
+
 
