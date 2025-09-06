@@ -2,6 +2,8 @@ tags:
   - Contacts
 summary: Delete a contact
 operationId: deleteContact
+description: |
+  Видаляє контакт за id, якщо він належить поточному користувачу.
 security:
   - bearerAuth: []
 parameters:
@@ -9,6 +11,7 @@ parameters:
     name: id
     required: true
     schema: { type: string }
+    description: MongoDB ObjectId контакту
 responses:
   '204':
     description: No Content

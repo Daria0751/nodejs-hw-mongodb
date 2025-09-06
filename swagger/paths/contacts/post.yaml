@@ -2,6 +2,8 @@ tags:
   - Contacts
 summary: Create a contact
 operationId: createContact
+description: |
+  Створює новий контакт. Підтримує завантаження фото (Cloudinary) через multipart/form-data.
 security:
   - bearerAuth: []
 requestBody:
@@ -10,11 +12,18 @@ requestBody:
     multipart/form-data:
       schema:
         type: object
+        required: [name, phoneNumber, contactType]
         properties:
-          name: { type: string }
-          phoneNumber: { type: string }
-          email: { type: string }
-          isFavourite: { type: boolean }
+          name:
+            type: string
+            minLength: 3
+            maxLength: 20
+          phoneNumber:
+            type: string
+          email:
+            type: string
+          isFavourite:
+            type: boolean
           contactType:
             type: string
             enum: [work, home, personal]

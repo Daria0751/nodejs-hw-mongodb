@@ -2,6 +2,8 @@ tags:
   - Contacts
 summary: Patch a contact
 operationId: patchContact
+description: |
+  Часткове оновлення контакту за id. Підтримує заміну фото (multipart/form-data).
 security:
   - bearerAuth: []
 parameters:
@@ -9,6 +11,7 @@ parameters:
     name: id
     required: true
     schema: { type: string }
+    description: MongoDB ObjectId контакту
 requestBody:
   required: true
   content:
@@ -16,10 +19,16 @@ requestBody:
       schema:
         type: object
         properties:
-          name: { type: string }
-          phoneNumber: { type: string }
-          email: { type: string }
-          isFavourite: { type: boolean }
+          name:
+            type: string
+            minLength: 3
+            maxLength: 20
+          phoneNumber:
+            type: string
+          email:
+            type: string
+          isFavourite:
+            type: boolean
           contactType:
             type: string
             enum: [work, home, personal]
