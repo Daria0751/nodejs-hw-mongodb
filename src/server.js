@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
-import contactsRouter from './routes/contactsRouter.js';
+import contactsRouter from './routers/contacts.js';
 import { swaggerServe, swaggerSetup } from './swagger.js';
 
 export const setupServer = () => {
