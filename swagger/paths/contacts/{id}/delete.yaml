@@ -1,0 +1,18 @@
+tags:
+  - Contacts
+summary: Delete a contact
+operationId: deleteContact
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema: { type: string }
+responses:
+  '204':
+    description: No Content
+  '401':
+    $ref: ../../../components/responses/Unauthorized.yaml
+  '404':
+    $ref: ../../../components/responses/NotFound.yaml
