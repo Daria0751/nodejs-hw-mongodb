@@ -15,7 +15,7 @@ tags:
 servers:
   - url: http://localhost:3000
     description: Local
-  - url: https://<your-render-service>.onrender.com
+  - url: https://nodejs-hw-mongodb-4jdp.onrender.com
     description: Production (Render)
 
 paths:
