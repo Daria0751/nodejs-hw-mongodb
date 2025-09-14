@@ -7,4 +7,5 @@ properties:
     type: string
     example: 'Something went wrong'
   data:
-    nullable: true
+  type: [string, 'null']
+  example: 'Something went wrong'
