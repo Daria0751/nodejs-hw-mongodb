@@ -13,8 +13,8 @@ properties:
     type: string
     example: '+123456789'
   email:
-  type: [string, 'null']
-  example: 'alice@example.com'
+    type: [string, 'null']
+    example: 'alice@example.com'
   isFavourite:
     type: boolean
     example: false
@@ -32,4 +32,11 @@ properties:
   updatedAt:
     type: string
     format: date-time
-required: [_id, userId, name, phoneNumber, contactType, createdAt, updatedAt]
+required:
+  - _id
+  - userId
+  - name
+  - phoneNumber
+  - contactType
+  - createdAt
+  - updatedAt
