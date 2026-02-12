@@ -1,19 +1,24 @@
 {
   "name": "nodejs-hw-mongodb",
   "version": "1.0.0",
-  "description": "",
+  "description": "REST API for managing contacts with MongoDB",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "build": "npm run build-docs",
+    "build-docs": "redocly bundle docs/openapi.yaml --ext json -o docs/swagger.json",
+    "preview-docs": "redocly preview-docs docs/openapi.yaml",
+    "lint-docs": "redocly lint docs/openapi.yaml",
+    "prestart": "npm run build-docs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Daria0751/nodejs-hw-mongodb.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Дарʼя Каранда",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Daria0751/nodejs-hw-mongodb/issues"
@@ -21,16 +26,27 @@
   "homepage": "https://github.com/Daria0751/nodejs-hw-mongodb#readme",
   "devDependencies": {
     "@eslint/js": "^9.32.0",
+    "@redocly/cli": "^2.0.8",
     "eslint": "^9.32.0",
     "globals": "^16.3.0",
     "nodemon": "^3.1.10"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.7.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "joi": "^18.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.18.0",
     "mongoose": "^8.4.0",
-    "pino-http": "^8.3.1"
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.5",
+    "pino-http": "^8.3.1",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
   }
 }

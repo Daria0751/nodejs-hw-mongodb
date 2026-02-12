@@ -1,0 +1,48 @@
+tags:
+  - Contacts
+summary: Patch a contact
+operationId: patchContact
+description: >
+  Часткове оновлення контакту за ID. Підтримує заміну фото (multipart/form-data).
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: contactId
+    required: true
+    schema:
+      type: string
+    description: MongoDB ObjectId контакту
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+          phoneNumber:
+            type: string
+          email:
+            type: string
+          isFavourite:
+            type: boolean
+          contactType:
+            type: string
+            enum: [work, home, personal]
+          photo:
+            type: string
+            format: binary
+      encoding:
+        photo:
+          contentType: image/png, image/jpeg, image/webp, image/gif
+responses:
+  '200':
+    description: Successfully patched a contact
+    content:
+      application/json:
+        schema:
+          $ref: ../../../components/schemas/Contact.yaml
+  '404':
+    $ref: ../../../components/responses/NotFound.yaml

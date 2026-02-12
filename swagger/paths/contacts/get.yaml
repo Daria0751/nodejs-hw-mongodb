@@ -1,0 +1,59 @@
+tags:
+  - Contacts
+summary: Get contacts (paginated, sortable, filterable)
+operationId: getContacts
+description: >
+  Повертає список контактів користувача з підтримкою пагінації, сортування та фільтрації.
+security:
+  - bearerAuth: []
+parameters:
+  - in: query
+    name: page
+    description: Номер сторінки (1..N)
+    schema:
+      type: integer
+      default: 1
+      minimum: 1
+  - in: query
+    name: limit
+    description: Кількість елементів на сторінці
+    schema:
+      type: integer
+      default: 10
+      minimum: 1
+      maximum: 100
+  - in: query
+    name: sortBy
+    description: Поле для сортування
+    schema:
+      type: string
+      enum: [name, email, contactType, createdAt]
+  - in: query
+    name: sortOrder
+    description: Порядок сортування
+    schema:
+      type: string
+      enum: [asc, desc]
+      default: asc
+  - in: query
+    name: contactType
+    description: Фільтр за типом контакту
+    schema:
+      type: string
+      enum: [work, home, personal]
+  - in: query
+    name: isFavourite
+    description: Фільтр за улюбленими
+    schema:
+      type: boolean
+responses:
+  '200':
+    description: Successfully found contacts
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            $ref: ../../components/schemas/Contact.yaml
+  '401':
+    $ref: ../../components/responses/Unauthorized.yaml
